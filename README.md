@@ -26,7 +26,16 @@ The installer adds this overlay and emerges the package. By hand it is:
 |------|--------------|
 | archives | archives as folders (7z, RAR) |
 | pdf | previews of PDF files |
+| remote | FTP, SFTP, SMB and WebDAV through gvfs |
 | video | thumbnails of videos |
 
-All three are on by default; the program runs without them and says plainly
+All four are on by default; the program runs without them and says plainly
 what is missing.
+
+`remote` pulls `gnome-base/gvfs` with `USE="fuse http samba"`. The `fuse` part
+is not optional in practice: without it gvfs mounts the share over D-Bus alone,
+nothing appears under `/run/user/UID/gvfs`, and a connection that in fact
+succeeded looks to the program like a failure. On an existing system it is worth
+checking:
+
+    emerge -pv gnome-base/gvfs      # fuse, http, samba should all be on
