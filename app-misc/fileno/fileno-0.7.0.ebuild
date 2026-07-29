@@ -4,7 +4,7 @@
 EAPI=8
 
 PYTHON_COMPAT=( python3_{10..13} )
-inherit python-single-r1 xdg
+inherit desktop python-single-r1 xdg
 
 DESCRIPTION="A dual-pane file manager for Linux, in the shape of Directory Opus"
 HOMEPAGE="https://github.com/peeterson/fileno-dist"
