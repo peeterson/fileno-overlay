@@ -31,7 +31,7 @@ RDEPEND="
 		dev-python/pyside:6[${PYTHON_USEDEP},gui,svg,widgets]
 	')
 	${PYTHON_DEPS}
-	archives? ( app-arch/p7zip )
+	archives? ( app-arch/7zip )
 	pdf? ( app-text/poppler[utils] )
 	video? ( media-video/ffmpegthumbnailer )
 "
