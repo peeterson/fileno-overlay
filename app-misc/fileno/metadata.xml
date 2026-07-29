@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>topolski87@gmail.com</email>
+		<name>peeterson</name>
+	</maintainer>
+	<use>
+		<flag name="archives">Read archives as folders (7z, RAR) with app-arch/p7zip</flag>
+		<flag name="pdf">Previews of PDF files with app-text/poppler</flag>
+		<flag name="video">Thumbnails of videos with media-video/ffmpegthumbnailer</flag>
+	</use>
+	<upstream>
+		<bugs-to>https://github.com/peeterson/fileno-dist/issues</bugs-to>
+	</upstream>
+</pkgmetadata>
