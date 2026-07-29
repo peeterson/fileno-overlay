@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10..13} )
+PYTHON_COMPAT=( python3_{11..14} )
 inherit desktop python-single-r1 xdg
 
 DESCRIPTION="A dual-pane file manager for Linux, in the shape of Directory Opus"
@@ -21,11 +21,14 @@ IUSE="+archives +pdf +video"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 # Qt itself is not a dependency of ours: PySide6 pulls in the parts it needs.
+# In Gentoo PySide6 is `dev-python/pyside:6`, and its modules are USE flags —
+# `svg` is off by default, so it has to be asked for by name or the program
+# starts without its own icons.
 # The three optional ones are what the program says is missing when a feature is
 # asked for without them — it runs perfectly well without all three.
 RDEPEND="
 	$(python_gen_cond_dep '
-		dev-python/pyside6[${PYTHON_USEDEP},gui,svg,widgets]
+		dev-python/pyside:6[${PYTHON_USEDEP},gui,svg,widgets]
 	')
 	${PYTHON_DEPS}
 	archives? ( app-arch/p7zip )
