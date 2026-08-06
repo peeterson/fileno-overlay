@@ -23,7 +23,7 @@ missing, Portage stops before it builds anything.
     echo 'app-misc/fileno **' \
         | sudo tee /etc/portage/package.accept_keywords/fileno
 
-    # 3. its licence is not one of the free ones Portage accepts unasked
+    # 3. its license is not one of the free ones Portage accepts unasked
     sudo mkdir -p /etc/portage/package.license
     echo 'app-misc/fileno all-rights-reserved' \
         | sudo tee /etc/portage/package.license/fileno
@@ -73,9 +73,9 @@ file of its own, because step 4's file is rewritten by the installer.
 
 `archives` pulls `app-arch/7zip`, which reads RAR as well — but only when it was
 itself built with `USE="rar"`. That flag is off by default and adds the unRAR
-licence, which is not among the ones Portage accepts unasked, so we do not
+license, which is not among the ones Portage accepts unasked, so we do not
 demand it: nobody who only wanted to walk into a .zip should have to accept a
-licence for it. If you want RAR:
+license for it. If you want RAR:
 
     echo 'app-arch/7zip rar' | sudo tee /etc/portage/package.use/7zip
     echo 'app-arch/7zip unRAR' | sudo tee /etc/portage/package.license/7zip

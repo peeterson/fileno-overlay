@@ -9,7 +9,7 @@
 		<flag name="archives">Read archives as folders (7z, zip, tar) with
 			app-arch/7zip. RAR is read too, but only where app-arch/7zip was
 			built with USE=rar — that flag is off by default and carries the
-			unRAR licence, so we do not require it here</flag>
+			unRAR license, so we do not require it here</flag>
 		<flag name="pdf">Previews of PDF files with app-text/poppler</flag>
 		<flag name="remote">Remote locations (FTP, SFTP, WebDAV) mounted through
 			gnome-base/gvfs. Pulls gvfs with USE=fuse, without which the share is
