@@ -8,9 +8,14 @@ ebuild — the program itself lives at
 
     curl -fsSL https://raw.githubusercontent.com/peeterson/fileno-dist/main/install.sh | bash
 
+Since 0.8.8 the ebuild is **bin-style**: it installs the same compiled,
+closed build the .deb carries (its Python and Qt travel inside, the way
+google-chrome is packaged) instead of compiling anything. The package is
+amd64-only for that reason.
+
 The installer adds this overlay and emerges the package. By hand it is four
 files and two commands — and it really is four: with any of the first three
-missing, Portage stops before it builds anything.
+missing, Portage stops before it installs anything.
 
     # 1. the overlay itself
     sudo mkdir -p /etc/portage/repos.conf
@@ -28,21 +33,20 @@ missing, Portage stops before it builds anything.
     echo 'app-misc/fileno all-rights-reserved' \
         | sudo tee /etc/portage/package.license/fileno
 
-    # 4. two USE flags on OTHER packages that the program cannot do without
+    # 4. USE flags on gvfs, which the remote-locations feature leans on
     sudo mkdir -p /etc/portage/package.use
-    printf '%s\n' 'dev-python/pyside svg' 'gnome-base/gvfs fuse http' \
+    echo 'gnome-base/gvfs fuse http' \
         | sudo tee /etc/portage/package.use/fileno
 
     sudo emerge --sync fileno
     sudo emerge --ask app-misc/fileno
 
 Every one of those entries names one package and changes nothing else on the
-box. The fourth is the one people leave out: `dev-python/pyside` builds without
-`svg`, and then Qt cannot draw the icon themes that ship svg and nothing else —
-the program comes up with empty toolbars. `gnome-base/gvfs` is the same story
-for remote locations and is explained at the bottom of this page. Portage would
-in fact ask for both, but only after a long dependency resolution, which is a
-poor moment to find out.
+box. The fourth is the one people leave out: without `fuse` a share that
+mounted perfectly never appears under `/run/user/UID/gvfs`, so the program
+has no folder to open — the details sit at the bottom of this page. Portage
+would ask for it itself, but only after a long dependency resolution, which
+is a poor moment to find out.
 
 ## The USE flags
 
